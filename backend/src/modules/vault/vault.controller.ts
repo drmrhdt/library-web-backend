@@ -19,7 +19,7 @@ export class VaultController {
   constructor(private readonly _vaultService: VaultService) {}
 
   @Post()
-  @ApiOperation({ description: 'Creating new vault' })
+  @ApiOperation({ summary: 'Create new vault' })
   @ApiCreatedResponse({
     description: 'Vault has been created successfully',
     type: Vault,
@@ -35,7 +35,7 @@ export class VaultController {
   }
 
   @Get()
-  @ApiOperation({ description: 'Retrieving all vaults' })
+  @ApiOperation({ summary: 'Retrieve all vaults' })
   @ApiOkResponse({
     status: 200,
     description: 'Vaults have been retrieved successfully',
@@ -51,7 +51,7 @@ export class VaultController {
   }
 
   @Get(':id')
-  @ApiOperation({ description: 'Retrieving vault by id' })
+  @ApiOperation({ summary: 'Retrieve vault by id' })
   @ApiOkResponse({
     status: 200,
     description: 'The founded vault',

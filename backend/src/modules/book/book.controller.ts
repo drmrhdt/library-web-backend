@@ -25,7 +25,9 @@ export class BookController {
   constructor(private readonly _bookService: BookService) {}
 
   @Post()
-  @ApiOperation({ description: 'Creating new book' })
+  @ApiOperation({
+    summary: 'Create new book',
+  })
   @ApiCreatedResponse({
     description: 'Book has been created successfully',
     type: Book,
@@ -41,7 +43,7 @@ export class BookController {
   }
 
   @Get()
-  @ApiOperation({ description: 'Retrieving all books' })
+  @ApiOperation({ summary: 'Retrieve all books' })
   @ApiOkResponse({
     status: 200,
     description: 'Books have been retrieved successfully',
@@ -57,7 +59,7 @@ export class BookController {
   }
 
   @Get(':id')
-  @ApiOperation({ description: 'Retrieving book by id' })
+  @ApiOperation({ summary: 'Retrieve book by id' })
   @ApiOkResponse({
     status: 200,
     description: 'The founded book',
