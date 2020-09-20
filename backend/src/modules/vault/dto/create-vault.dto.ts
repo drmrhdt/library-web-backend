@@ -1,3 +1,4 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import {
   IsString,
   MinLength,
@@ -6,41 +7,46 @@ import {
   IsNotEmpty,
   IsOptional,
 } from 'class-validator'
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+
+import { MIN_STRING_LENGTH, MIN_NUMBER } from 'src/utils/constants'
 
 export class CreateVaultDto {
   @ApiProperty({ description: 'The name of the vault', uniqueItems: true })
   @IsNotEmpty()
   @IsString()
-  @MinLength(2, { message: 'name should be at least 2 characters' })
+  @MinLength(MIN_STRING_LENGTH, {
+    message: `name should be at least ${MIN_STRING_LENGTH} characters`,
+  })
   readonly name: string
 
   @ApiPropertyOptional({ description: 'The description of the vault' })
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  @MinLength(2, { message: 'description should be at least 2 characters' })
+  @MinLength(MIN_STRING_LENGTH, {
+    message: `description should be at least ${MIN_STRING_LENGTH} characters`,
+  })
   readonly description: string
 
   @ApiProperty({
     description: 'The number of shelfs',
-    minimum: 1,
-    default: 1,
-    example: 1,
+    minimum: MIN_NUMBER,
+    default: MIN_NUMBER,
+    example: MIN_NUMBER,
   })
   @IsNotEmpty()
   @IsInt()
-  @Min(1, { message: 'you should set should at least 1 shelf' })
+  @Min(1, { message: `you should set should at least ${MIN_NUMBER} shelf` })
   readonly numShelfs: number
 
   @ApiProperty({
     description: 'The number of rows on shelf',
-    minimum: 1,
-    default: 1,
-    example: 1,
+    minimum: MIN_NUMBER,
+    default: MIN_NUMBER,
+    example: MIN_NUMBER,
   })
   @IsNotEmpty()
   @IsInt()
-  @Min(1, { message: 'you should set should at least 1 row' })
+  @Min(1, { message: `you should set should at least ${MIN_NUMBER} row` })
   readonly numRows: number
 }
