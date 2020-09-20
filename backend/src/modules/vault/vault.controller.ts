@@ -4,6 +4,7 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiNotFoundResponse,
+  ApiOperation,
 } from '@nestjs/swagger'
 import { Param } from '@nestjs/common/decorators/http/route-params.decorator'
 import { BadRequestException } from '@nestjs/common/exceptions/bad-request.exception'
@@ -18,6 +19,7 @@ export class VaultController {
   constructor(private readonly _vaultService: VaultService) {}
 
   @Post()
+  @ApiOperation({ description: 'Creating new vault' })
   @ApiCreatedResponse({
     description: 'Vault has been created successfully',
     type: Vault,
@@ -33,6 +35,7 @@ export class VaultController {
   }
 
   @Get()
+  @ApiOperation({ description: 'Retrieving all vaults' })
   @ApiOkResponse({
     status: 200,
     description: 'Vaults have been retrieved successfully',
@@ -48,6 +51,7 @@ export class VaultController {
   }
 
   @Get(':id')
+  @ApiOperation({ description: 'Retrieving vault by id' })
   @ApiOkResponse({
     status: 200,
     description: 'The founded vault',

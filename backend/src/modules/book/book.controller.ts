@@ -11,6 +11,7 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiOperation,
   ApiTags,
 } from '@nestjs/swagger'
 
@@ -24,6 +25,7 @@ export class BookController {
   constructor(private readonly _bookService: BookService) {}
 
   @Post()
+  @ApiOperation({ description: 'Creating new book' })
   @ApiCreatedResponse({
     description: 'Book has been created successfully',
     type: Book,
@@ -39,6 +41,7 @@ export class BookController {
   }
 
   @Get()
+  @ApiOperation({ description: 'Retrieving all books' })
   @ApiOkResponse({
     status: 200,
     description: 'Books have been retrieved successfully',
@@ -54,6 +57,7 @@ export class BookController {
   }
 
   @Get(':id')
+  @ApiOperation({ description: 'Retrieving book by id' })
   @ApiOkResponse({
     status: 200,
     description: 'The founded book',
