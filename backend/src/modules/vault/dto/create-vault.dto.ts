@@ -36,7 +36,7 @@ export class CreateVaultDto {
   })
   @IsNotEmpty()
   @IsInt()
-  @Min(1, { message: `you should set should at least ${MIN_NUMBER} shelf` })
+  @Min(1, { message: `you should set at least ${MIN_NUMBER} shelf` })
   readonly numShelfs: number
 
   @ApiProperty({
@@ -47,6 +47,19 @@ export class CreateVaultDto {
   })
   @IsNotEmpty()
   @IsInt()
-  @Min(1, { message: `you should set should at least ${MIN_NUMBER} row` })
+  @Min(1, { message: `you should set at least ${MIN_NUMBER} row` })
   readonly numRows: number
+
+  @ApiProperty({
+    description: 'The max number of books',
+    minimum: MIN_NUMBER,
+    default: MIN_NUMBER,
+    example: MIN_NUMBER,
+  })
+  @IsNotEmpty()
+  @IsInt()
+  @Min(1, {
+    message: `the max number of books should be set at least ${MIN_NUMBER}`,
+  })
+  readonly maxBooksOnShelf: number
 }

@@ -14,6 +14,9 @@ export class Vault extends Document {
 
   @Prop({ required: true })
   numRows: number
+
+  @Prop({ required: true })
+  maxBooksOnShelf: number
 }
 
 export const VaultSchema = SchemaFactory.createForClass(Vault)

@@ -6,4 +6,5 @@ export interface Vault extends Document {
   description?: string
   numShelfs: number
   numRows: number
+  maxBooksOnShelf: number
 }
