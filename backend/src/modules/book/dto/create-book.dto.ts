@@ -52,6 +52,31 @@ export class CreateBookDto {
   @IsMongoId()
   private readonly vault: Types.ObjectId
 
+  @ApiProperty({
+    description: 'The shelf where book is located',
+  })
+  private readonly shelf: number
+
+  @ApiProperty({
+    description: 'The row where book is located',
+  })
+  private readonly row: number
+
+  @ApiProperty({
+    description: "The book's number on row",
+  })
+  private readonly number: number
+
+  @ApiProperty({
+    description: 'Is the book missing or in place',
+  })
+  private readonly status: string
+
+  @ApiProperty({
+    description: 'The reason for the absence',
+  })
+  private readonly reasonOfmissing: string
+
   @ApiPropertyOptional({ description: "The book's front image" })
   @IsOptional()
   @IsNotEmpty()

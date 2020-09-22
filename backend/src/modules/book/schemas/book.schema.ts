@@ -15,6 +15,22 @@ export class Book extends Document {
   @Prop({ required: true, type: Types.ObjectId, ref: 'Vault' })
   vault: string
 
+  // TODO check if i can make them required conditionally, or just keep null, when no value
+  @Prop()
+  shelf: number
+
+  @Prop()
+  row: number
+
+  @Prop()
+  number: number
+
+  @Prop()
+  status: string
+
+  @Prop()
+  reasonOfmissing: string
+
   @Prop()
   frontImage: Buffer
 
