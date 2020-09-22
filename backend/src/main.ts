@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The library API description')
     .setVersion('1.0')
     .addTag('library')
+    .setContact('daria', 'https://github.com/drmrhdt', 'drmrhdt@mail.ru')
     .build()
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('api', app, document)
