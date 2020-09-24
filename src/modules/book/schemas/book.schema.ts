@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document, Types } from 'mongoose'
+import { Status } from '../models'
 
 @Schema()
 export class Book extends Document {
-  @Prop({ required: true, unique: true, minlength: 2 })
+  @Prop({ required: true, minlength: 2 })
   name: string
 
   @Prop({ required: true, minlength: 2 })
@@ -26,7 +27,7 @@ export class Book extends Document {
   number: number
 
   @Prop()
-  status: string
+  status: Status
 
   @Prop()
   reasonOfmissing: string
