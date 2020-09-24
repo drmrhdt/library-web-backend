@@ -75,6 +75,7 @@ export class CreateBookDto {
   @IsEnum(Status)
   @ApiProperty({
     description: 'Is the book missing or in place',
+    required: true,
     enum: Status,
   })
   private readonly status: Status

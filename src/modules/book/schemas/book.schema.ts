@@ -14,7 +14,7 @@ export class Book extends Document {
   description: string
 
   @Prop({ required: true, type: Types.ObjectId, ref: 'Vault' })
-  vault: string
+  vault: Types.ObjectId
 
   // TODO check if i can make them required conditionally, or just keep null, when no value
   @Prop()
@@ -26,7 +26,7 @@ export class Book extends Document {
   @Prop()
   number: number
 
-  @Prop()
+  @Prop({ required: true })
   status: Status
 
   @Prop()
