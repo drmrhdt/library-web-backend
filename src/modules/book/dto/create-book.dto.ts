@@ -76,14 +76,4 @@ export class CreateBookDto {
     description: 'The reason for the absence',
   })
   private readonly reasonOfmissing: string
-
-  @ApiPropertyOptional({ description: "The book's front image" })
-  @IsOptional()
-  @IsNotEmpty()
-  private readonly frontImage: Buffer
-
-  @ApiPropertyOptional({ description: "The book's side image" })
-  @IsOptional()
-  @IsNotEmpty()
-  private readonly sideImage: Buffer
 }

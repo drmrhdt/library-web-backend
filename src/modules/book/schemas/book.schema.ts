@@ -30,12 +30,6 @@ export class Book extends Document {
 
   @Prop()
   reasonOfmissing: string
-
-  @Prop()
-  frontImage: Buffer
-
-  @Prop()
-  sideImage: Buffer
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book)
