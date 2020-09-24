@@ -6,8 +6,11 @@ import {
   IsNotEmpty,
   IsOptional,
   IsMongoId,
+  IsEnum,
 } from 'class-validator'
+
 import { MIN_STRING_LENGTH } from 'src/utils/constants'
+import { Status } from '../models'
 
 export class CreateBookDto {
   @ApiProperty({
@@ -44,8 +47,10 @@ export class CreateBookDto {
   })
   private readonly description: string
 
+  // TODO strange type in swagger
   @ApiProperty({
     description: "The vault's id",
+    type: Types.ObjectId,
   })
   @IsOptional()
   @IsNotEmpty()
@@ -67,10 +72,12 @@ export class CreateBookDto {
   })
   private readonly number: number
 
+  @IsEnum(Status)
   @ApiProperty({
     description: 'Is the book missing or in place',
+    enum: Status,
   })
-  private readonly status: string
+  private readonly status: Status
 
   @ApiProperty({
     description: 'The reason for the absence',
