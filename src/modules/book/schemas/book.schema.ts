@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document, Types } from 'mongoose'
+import { Vault } from 'src/modules/vault/schemas/vault.schema'
 import { Status } from '../models'
 
 @Schema()
@@ -13,8 +14,8 @@ export class Book extends Document {
   @Prop({ minlength: 2 })
   description: string
 
-  @Prop({ required: true, type: Types.ObjectId, ref: 'Vault' })
-  vault: Types.ObjectId
+  @Prop({ type: Types.ObjectId, ref: Vault.name })
+  vault: Vault
 
   // TODO check if i can make them required conditionally, or just keep null, when no value
   @Prop()

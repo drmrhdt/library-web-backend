@@ -11,6 +11,7 @@ import {
 
 import { MIN_STRING_LENGTH } from 'src/utils/constants'
 import { Status } from '../models'
+import { Vault } from 'src/modules/vault/schemas/vault.schema'
 
 export class CreateBookDto {
   @ApiProperty({
@@ -50,12 +51,12 @@ export class CreateBookDto {
   // TODO strange type in swagger
   @ApiProperty({
     description: "The vault's id",
-    type: Types.ObjectId,
+    type: Vault.name,
   })
   @IsOptional()
   @IsNotEmpty()
   @IsMongoId()
-  private readonly vault: Types.ObjectId
+  private readonly vault: Vault
 
   @ApiProperty({
     description: 'The shelf where book is located',
