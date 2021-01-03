@@ -8,6 +8,7 @@ async function bootstrap() {
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   })
+  app.setGlobalPrefix('v1/api')
 
   const options = new DocumentBuilder()
     .setTitle('Library')
@@ -15,6 +16,8 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('library')
     .setContact('daria', 'https://github.com/drmrhdt', 'drmrhdt@mail.ru')
+    .setBasePath('v1/api')
+    .addServer('http://localhost:3000')
     .build()
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('api', app, document)
