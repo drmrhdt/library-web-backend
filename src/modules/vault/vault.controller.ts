@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Body, ParseIntPipe } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  ParseIntPipe,
+  Delete,
+} from '@nestjs/common'
 import { Param } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
 
@@ -27,5 +34,11 @@ export class VaultController {
   @Get('/:id')
   findById(@Param('id', ParseIntPipe) id: number): Promise<Vault> {
     return this._vaultService.findById(id)
+  }
+
+  @ApiOperation({ summary: 'Delete vault by id' })
+  @Delete(':id')
+  deleteById(@Param('id') id: number) {
+    return this._vaultService.deleteVaultById(id)
   }
 }

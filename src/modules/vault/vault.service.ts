@@ -29,4 +29,8 @@ export class VaultService {
 
     return found
   }
+
+  async deleteVaultById(id: number) {
+    return this._vaultRepository.deleteVaultById(id)
+  }
 }

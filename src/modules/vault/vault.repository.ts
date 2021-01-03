@@ -47,4 +47,8 @@ export class VaultRepository extends Repository<Vault> {
   async findById(id: number) {
     return await this.findOne(id, { relations: ['books'] })
   }
+
+  async deleteVaultById(id: number) {
+    return this.delete(id)
+  }
 }
