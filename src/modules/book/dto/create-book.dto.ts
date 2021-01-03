@@ -1,88 +1,89 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
-import { Types } from 'mongoose'
-import {
-  IsString,
-  MinLength,
-  IsNotEmpty,
-  IsOptional,
-  IsMongoId,
-  IsEnum,
-} from 'class-validator'
+// import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+// import { Types } from 'mongoose'
+// import {
+//   IsString,
+//   MinLength,
+//   IsNotEmpty,
+//   IsOptional,
+//   IsMongoId,
+//   IsEnum,
+// } from 'class-validator'
 
-import { MIN_STRING_LENGTH } from 'src/utils/constants'
+// import { MIN_STRING_LENGTH } from 'src/utils/constants'
 import { Status } from '../models'
-import { Vault } from 'src/modules/vault/schemas/vault.schema'
+// import { Vault } from 'src/modules/vault/schemas/vault.schema'
 
 export class CreateBookDto {
   @ApiProperty({
     description: "The books's name",
-    minLength: MIN_STRING_LENGTH,
+    // minLength: MIN_STRING_LENGTH,
   })
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(MIN_STRING_LENGTH, {
-    message: `name should be at least ${MIN_STRING_LENGTH} characters`,
-  })
-  private readonly name: string
+  // @IsNotEmpty()
+  // @IsString()
+  // @MinLength(MIN_STRING_LENGTH, {
+  //   message: `name should be at least ${MIN_STRING_LENGTH} characters`,
+  // })
+  readonly name: string
 
   @ApiProperty({
     description: "The books's author",
-    minLength: MIN_STRING_LENGTH,
+    // minLength: MIN_STRING_LENGTH,
   })
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(MIN_STRING_LENGTH, {
-    message: `name should be at least ${MIN_STRING_LENGTH} characters`,
-  })
-  private readonly author: string
+  // @IsNotEmpty()
+  // @IsString()
+  // @MinLength(MIN_STRING_LENGTH, {
+  //   message: `name should be at least ${MIN_STRING_LENGTH} characters`,
+  // })
+  readonly author: string
 
   @ApiPropertyOptional({
     description: "The book's description",
-    minLength: MIN_STRING_LENGTH,
+    // minLength: MIN_STRING_LENGTH,
   })
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(MIN_STRING_LENGTH, {
-    message: `name should be at least ${MIN_STRING_LENGTH} characters`,
-  })
-  private readonly description: string
+  // @IsOptional()
+  // @IsNotEmpty()
+  // @IsString()
+  // @MinLength(MIN_STRING_LENGTH, {
+  //   message: `name should be at least ${MIN_STRING_LENGTH} characters`,
+  // })
+  readonly description: string
 
   // TODO strange type in swagger
   @ApiProperty({
     description: "The vault's id",
-    type: Vault.name,
+    // type: Vault.name,
   })
-  @IsOptional()
-  @IsNotEmpty()
-  @IsMongoId()
-  private readonly vault: Vault
-
-  @ApiProperty({
-    description: 'The shelf where book is located',
-  })
-  private readonly shelf: number
+  // @IsOptional()
+  // @IsNotEmpty()
+  // @IsMongoId()
+  readonly vaultId: number
 
   @ApiProperty({
     description: 'The row where book is located',
   })
-  private readonly row: number
+  readonly row: number
+
+  @ApiProperty({
+    description: 'The shelf where book is located',
+  })
+  readonly shelf: number
 
   @ApiProperty({
     description: "The book's number on row",
   })
-  private readonly number: number
+  readonly number: number
 
-  @IsEnum(Status)
-  @ApiProperty({
-    description: 'Is the book missing or in place',
-    required: true,
-    enum: Status,
-  })
-  private readonly status: Status
+  // @IsEnum(Status)
+  // @ApiProperty({
+  //   description: 'Is the book missing or in place',
+  //   required: true,
+  //   enum: Status,
+  // })
+  readonly status: Status
 
-  @ApiProperty({
-    description: 'The reason for the absence',
-  })
-  private readonly reasonOfmissing: string
+  // @ApiProperty({
+  //   description: 'The reason for the absence',
+  // })
+  readonly reasonOfMissing: string
 }

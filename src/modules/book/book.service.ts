@@ -1,26 +1,31 @@
-import { Injectable } from '@nestjs/common'
-import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
+import { Injectable, NotFoundException } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
 
+import { BookRepository } from './book.repository'
+import { Book } from './book.entity'
 import { CreateBookDto } from './dto/create-book.dto'
-import { Book } from './schemas/book.schema'
 
 @Injectable()
 export class BookService {
   constructor(
-    @InjectModel(Book.name) private readonly _bookModel: Model<Book>,
+    @InjectRepository(BookRepository) private _bookRepository: BookRepository,
   ) {}
 
-  async create(createBookDto: CreateBookDto): Promise<Book> {
-    const createdBook = new this._bookModel(createBookDto)
-    return await createdBook.save()
+  async getBookById(id: number): Promise<Book> {
+    const found = await this._bookRepository.findOne(id)
+
+    if (!found) {
+      throw new NotFoundException(`Book with ID ${id} not found`)
+    }
+
+    return found
   }
 
-  async findAll(): Promise<Book[]> {
-    return await this._bookModel.find()
+  async createBook(createBookDto: CreateBookDto): Promise<Book> {
+    return await this._bookRepository.createBook(createBookDto)
   }
 
-  async findOne(id: string): Promise<Book> {
-    return await this._bookModel.findById(id)
+  async getAllBooks(): Promise<Book[]> {
+    return this._bookRepository.getAllBooks()
   }
 }

@@ -1,26 +1,32 @@
-import { Injectable } from '@nestjs/common'
-import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
+import { Injectable, NotFoundException } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
 
+import { VaultRepository } from './vault.repository'
+import { Vault } from './vault.entity'
 import { CreateVaultDto } from './dto/create-vault.dto'
-import { Vault } from 'src/modules/vault/schemas/vault.schema'
 
 @Injectable()
 export class VaultService {
   constructor(
-    @InjectModel(Vault.name) private readonly _vaultModel: Model<Vault>,
+    @InjectRepository(VaultRepository)
+    private _vaultRepository: VaultRepository,
   ) {}
 
-  async create(createVaultDto: CreateVaultDto): Promise<Vault> {
-    const createdVault = new this._vaultModel(createVaultDto)
-    return await createdVault.save()
+  async createVault(createVaultDto: CreateVaultDto): Promise<Vault> {
+    return await this._vaultRepository.createVault(createVaultDto)
   }
 
-  async findAll(): Promise<Vault[]> {
-    return await this._vaultModel.find()
+  async getAllVaults(): Promise<Vault[]> {
+    return this._vaultRepository.getAllVaults()
   }
 
-  async findOne(id: string): Promise<Vault> {
-    return await this._vaultModel.findById(id)
+  async findById(id: number): Promise<Vault> {
+    const found = await this._vaultRepository.findById(id)
+
+    if (!found) {
+      throw new NotFoundException(`Vault with ID ${id} not found`)
+    }
+
+    return found
   }
 }

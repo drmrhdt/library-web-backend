@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common'
-import { MongooseModule } from '@nestjs/mongoose'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { Vault, VaultSchema } from 'src/modules/vault/schemas/vault.schema'
 import { VaultController } from './vault.controller'
 import { VaultService } from './vault.service'
+import { VaultRepository } from './vault.repository'
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: Vault.name, schema: VaultSchema }]),
-  ],
+  imports: [TypeOrmModule.forFeature([VaultRepository])],
   controllers: [VaultController],
   providers: [VaultService],
 })
