@@ -33,7 +33,7 @@ export class BookController {
 
   @ApiOperation({ summary: 'Retrieve all books' })
   @Get()
-  async getAll(): Promise<Book[]> {
-    return await this._bookService.getAllBooks()
+  getAll(): Promise<Book[]> {
+    return this._bookService.getAllBooks()
   }
 }
