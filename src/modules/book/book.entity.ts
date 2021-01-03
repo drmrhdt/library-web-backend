@@ -1,3 +1,4 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import {
   BaseEntity,
   Column,
@@ -5,19 +6,20 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm'
-import { Vault } from '../vault/vault.entity'
 
+import { Vault } from '../vault/vault.entity'
 import { Status } from './models'
 
 @Entity()
 export class Book extends BaseEntity {
+  // @ApiProperty({ description: 'Auto-generated id' })
   @PrimaryGeneratedColumn()
   id: number
 
   // @ApiProperty({
-  //     description: "The books's name",
-  //     minLength: MIN_STRING_LENGTH,
-  //   })
+  //   description: "The books's name",
+  //   // minLength: MIN_STRING_LENGTH,
+  // })
   //   @IsNotEmpty()
   //   @IsString()
   //   @MinLength(MIN_STRING_LENGTH, {
@@ -38,6 +40,7 @@ export class Book extends BaseEntity {
   //     message: `name should be at least ${MIN_STRING_LENGTH} characters`,
   //   })
   //   @Prop({ minlength: 2 })
+  // @ApiProperty()
   @Column({ nullable: true })
   description: string
 
@@ -60,6 +63,7 @@ export class Book extends BaseEntity {
   //     message: `name should be at least ${MIN_STRING_LENGTH} characters`,
   //   })
   //   @Prop({ required: true, minlength: 2 })
+  // @ApiProperty()
   @Column()
   author: string
 
@@ -69,6 +73,7 @@ export class Book extends BaseEntity {
   //   })
   //   @Prop()
   //   shelf: number
+  // @ApiProperty()
   @Column()
   shelf: number
 
@@ -77,6 +82,7 @@ export class Book extends BaseEntity {
   //   })
   //   @Prop()
   //   row: number
+  // @ApiProperty()
   @Column()
   row: number
 
@@ -85,6 +91,7 @@ export class Book extends BaseEntity {
   //   })
   //   @Prop()
   //   number: number
+  // @ApiProperty()
   @Column()
   number: number
 
@@ -95,6 +102,7 @@ export class Book extends BaseEntity {
   //     enum: Status,
   //   })
   //   @Prop({ required: true })
+  // @ApiProperty()
   @Column({ default: Status.InPlace })
   status: Status
 
@@ -103,7 +111,8 @@ export class Book extends BaseEntity {
   //   })
   //   @Prop()
   //   reasonOfmissing: string
-  @Column()
+  // @ApiPropertyOptional()
+  @Column({ nullable: true })
   reasonOfMissing: string
 
   //   @ApiProperty({
