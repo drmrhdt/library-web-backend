@@ -16,4 +16,8 @@ export class BookRepository extends Repository<Book> {
   async getAllBooks(): Promise<Book[]> {
     return await this.find({ relations: ['vault'] })
   }
+
+  async deleteBookById(id: number) {
+    return this.delete(id)
+  }
 }

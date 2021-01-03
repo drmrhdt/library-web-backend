@@ -5,6 +5,7 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  Delete,
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
@@ -35,5 +36,11 @@ export class BookController {
   @Get()
   getAll(): Promise<Book[]> {
     return this._bookService.getAllBooks()
+  }
+
+  @ApiOperation({ summary: 'Delete book by id' })
+  @Delete(':id')
+  deleteById(@Param('id') id: number) {
+    return this._bookService.deleteBookById(id)
   }
 }

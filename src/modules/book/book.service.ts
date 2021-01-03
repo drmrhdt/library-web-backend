@@ -28,4 +28,8 @@ export class BookService {
   async getAllBooks(): Promise<Book[]> {
     return this._bookRepository.getAllBooks()
   }
+
+  async deleteBookById(id: number) {
+    return this._bookRepository.deleteBookById(id)
+  }
 }
