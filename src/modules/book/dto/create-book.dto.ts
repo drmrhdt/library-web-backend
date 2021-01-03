@@ -1,4 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+import { IsEnum } from 'class-validator'
 // import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 // import { Types } from 'mongoose'
 // import {
@@ -12,11 +13,10 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 // import { MIN_STRING_LENGTH } from 'src/utils/constants'
 import { Status } from '../models'
-// import { Vault } from 'src/modules/vault/schemas/vault.schema'
 
 export class CreateBookDto {
   @ApiProperty({
-    description: "The books's name",
+    description: "The book's name",
     // minLength: MIN_STRING_LENGTH,
   })
   // @IsNotEmpty()
@@ -27,7 +27,7 @@ export class CreateBookDto {
   readonly name: string
 
   @ApiProperty({
-    description: "The books's author",
+    description: "The book's author",
     // minLength: MIN_STRING_LENGTH,
   })
   // @IsNotEmpty()
@@ -56,7 +56,6 @@ export class CreateBookDto {
   })
   // @IsOptional()
   // @IsNotEmpty()
-  // @IsMongoId()
   readonly vaultId: number
 
   @ApiProperty({
@@ -74,16 +73,16 @@ export class CreateBookDto {
   })
   readonly number: number
 
-  // @IsEnum(Status)
-  // @ApiProperty({
-  //   description: 'Is the book missing or in place',
-  //   required: true,
-  //   enum: Status,
-  // })
+  @IsEnum(Status)
+  @ApiProperty({
+    description: 'Is the book missing or in place',
+    required: true,
+    enum: Status,
+  })
   readonly status: Status
 
-  // @ApiProperty({
-  //   description: 'The reason for the absence',
-  // })
+  @ApiProperty({
+    description: 'The reason for the absence',
+  })
   readonly reasonOfMissing: string
 }
