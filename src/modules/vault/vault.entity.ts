@@ -101,4 +101,6 @@ export class Vault extends BaseEntity {
     book => book.vault,
   )
   books: Book[]
+
+  shelfs
 }
