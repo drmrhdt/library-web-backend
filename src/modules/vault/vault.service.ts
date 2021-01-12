@@ -33,4 +33,8 @@ export class VaultService {
   async deleteVaultById(id: number) {
     return this._vaultRepository.deleteVaultById(id)
   }
+
+  async updateById(id: number, body) {
+    return this._vaultRepository.update(id, body)
+  }
 }

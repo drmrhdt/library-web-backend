@@ -51,4 +51,8 @@ export class VaultRepository extends Repository<Vault> {
   async deleteVaultById(id: number) {
     return this.delete(id)
   }
+
+  async updateById(id: number, body) {
+    return this.update(id, body)
+  }
 }
