@@ -10,8 +10,9 @@ import {
 import { Param } from '@nestjs/common'
 import { ApiTags, ApiOperation } from '@nestjs/swagger'
 
-import { CreateVaultDto } from './dto/create-vault.dto'
 import { VaultService } from './vault.service'
+
+import { CreateVaultDto } from './dto/create-vault.dto'
 import { Vault } from './vault.entity'
 
 class UpdateUserDto {
@@ -41,15 +42,15 @@ export class VaultController {
     return this._vaultService.findById(id)
   }
 
-  @ApiOperation({ summary: 'Delete vault by id' })
-  @Delete(':id')
-  deleteById(@Param('id') id: number) {
-    return this._vaultService.deleteVaultById(id)
-  }
-
   @ApiOperation({ summary: 'Update vault by id' })
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
     return this._vaultService.updateById(id, updateUserDto)
+  }
+
+  @ApiOperation({ summary: 'Delete vault by id' })
+  @Delete(':id')
+  deleteById(@Param('id') id: number) {
+    return this._vaultService.deleteVaultById(id)
   }
 }

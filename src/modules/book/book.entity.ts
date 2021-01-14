@@ -3,9 +3,12 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm'
+import { Tag } from '../tags/tag.entity'
 
 import { Vault } from '../vault/vault.entity'
 import { Status } from './models'
@@ -131,4 +134,8 @@ export class Book extends BaseEntity {
     vault => vault.books,
   )
   vault: Vault
+
+  @ManyToMany(type => Tag)
+  @JoinTable()
+  tags: Tag[]
 }
