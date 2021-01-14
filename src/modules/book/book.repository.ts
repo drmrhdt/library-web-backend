@@ -2,6 +2,7 @@ import { EntityRepository, Repository } from 'typeorm'
 
 import { Book } from './book.entity'
 import { CreateBookDto } from './dto/create-book.dto'
+import { UpdateBookDto } from './dto/update-book.dto'
 
 @EntityRepository(Book)
 export class BookRepository extends Repository<Book> {
@@ -19,5 +20,9 @@ export class BookRepository extends Repository<Book> {
 
   async deleteBookById(id: number) {
     return this.delete(id)
+  }
+
+  async updateById(id: number, updateBookDto: UpdateBookDto) {
+    return this.update(id, updateBookDto)
   }
 }

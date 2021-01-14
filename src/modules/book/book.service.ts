@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { BookRepository } from './book.repository'
 import { Book } from './book.entity'
 import { CreateBookDto } from './dto/create-book.dto'
+import { UpdateBookDto } from './dto/update-book.dto'
 
 @Injectable()
 export class BookService {
@@ -31,5 +32,9 @@ export class BookService {
 
   async deleteBookById(id: number) {
     return this._bookRepository.deleteBookById(id)
+  }
+
+  async update(id: number, updateBookDto: UpdateBookDto) {
+    return this._bookRepository.updateById(id, updateBookDto)
   }
 }

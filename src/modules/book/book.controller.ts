@@ -6,12 +6,15 @@ import {
   Param,
   ParseIntPipe,
   Delete,
+  Patch,
 } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { UpdateResult } from 'typeorm'
 
 import { Book } from './book.entity'
 import { BookService } from './book.service'
 import { CreateBookDto } from './dto/create-book.dto'
+import { UpdateBookDto } from './dto/update-book.dto'
 
 @ApiTags('book')
 @Controller('book')
@@ -36,6 +39,15 @@ export class BookController {
   @Get()
   getAll(): Promise<Book[]> {
     return this._bookService.getAllBooks()
+  }
+
+  @ApiOperation({ summary: 'Update book by id' })
+  @Patch(':id')
+  update(
+    @Param('id') id: number,
+    @Body() updateBookDto: UpdateBookDto,
+  ): Promise<UpdateResult> {
+    return this._bookService.update(id, updateBookDto)
   }
 
   @ApiOperation({ summary: 'Delete book by id' })
