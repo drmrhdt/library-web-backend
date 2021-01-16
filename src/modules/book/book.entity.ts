@@ -8,9 +8,10 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm'
-import { Tag } from '../tags/tag.entity'
 
+import { Tag } from '../tags/tag.entity'
 import { Vault } from '../vault/vault.entity'
+
 import { Status } from './models'
 
 @Entity()
