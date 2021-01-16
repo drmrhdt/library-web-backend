@@ -44,15 +44,15 @@ export class BookController {
   @ApiOperation({ summary: 'Update book by id' })
   @Patch(':id')
   update(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateBookDto: UpdateBookDto,
-  ): Promise<UpdateResult> {
+  ) {
     return this._bookService.update(id, updateBookDto)
   }
 
   @ApiOperation({ summary: 'Delete book by id' })
   @Delete(':id')
-  deleteById(@Param('id') id: number) {
+  deleteById(@Param('id', ParseIntPipe) id: number) {
     return this._bookService.deleteBookById(id)
   }
 }

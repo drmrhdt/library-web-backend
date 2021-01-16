@@ -1,4 +1,9 @@
-import { EntityRepository, Repository } from 'typeorm'
+import {
+  DeleteResult,
+  EntityRepository,
+  Repository,
+  UpdateResult,
+} from 'typeorm'
 
 import { Book } from './book.entity'
 import { CreateBookDto } from './dto/create-book.dto'
@@ -18,11 +23,11 @@ export class BookRepository extends Repository<Book> {
     return await this.find({ relations: ['vault', 'tags'] })
   }
 
-  async deleteBookById(id: number) {
+  async deleteBookById(id: number): Promise<DeleteResult> {
     return this.delete(id)
   }
 
-  async updateById(id: number, updateBookDto: UpdateBookDto) {
-    return this.update(id, updateBookDto)
+  async updateById(id: number, updateBookDto: UpdateBookDto): Promise<Book> {
+    return this.save({ id, ...updateBookDto })
   }
 }
