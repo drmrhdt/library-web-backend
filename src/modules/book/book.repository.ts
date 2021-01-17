@@ -11,7 +11,7 @@ import { UpdateBookDto } from './dto/update-book.dto'
 
 @EntityRepository(Book)
 export class BookRepository extends Repository<Book> {
-  async createBook(createBookDto: CreateBookDto) {
+  async createBook(createBookDto: CreateBookDto[]): Promise<Book | Book[]> {
     return await this.save(createBookDto)
   }
 

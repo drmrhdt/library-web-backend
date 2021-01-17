@@ -31,7 +31,7 @@ export class BookController {
     summary: 'Create new book',
   })
   @Post()
-  create(@Body() createBookDto: CreateBookDto): Promise<Book> {
+  create(@Body() createBookDto: CreateBookDto[]): Promise<Book | Book[]> {
     return this._bookService.createBook(createBookDto)
   }
 
