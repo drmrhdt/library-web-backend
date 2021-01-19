@@ -50,7 +50,7 @@ export class CreateBookDto {
   readonly description: string
 
   // TODO strange type in swagger
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "The vault's id",
     // type: Vault.name,
   })
@@ -58,17 +58,17 @@ export class CreateBookDto {
   // @IsNotEmpty()
   readonly vaultId: number
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'The row where book is located',
   })
   readonly row: number
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'The shelf where book is located',
   })
   readonly shelf: number
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "The book's number on row",
   })
   readonly number: number

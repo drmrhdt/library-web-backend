@@ -78,7 +78,7 @@ export class Book extends BaseEntity {
   //   @Prop()
   //   shelf: number
   // @ApiProperty()
-  @Column()
+  @Column({ nullable: true })
   shelf: number
 
   //   @ApiProperty({
@@ -87,7 +87,7 @@ export class Book extends BaseEntity {
   //   @Prop()
   //   row: number
   // @ApiProperty()
-  @Column()
+  @Column({ nullable: true })
   row: number
 
   //   @ApiProperty({
@@ -96,7 +96,7 @@ export class Book extends BaseEntity {
   //   @Prop()
   //   number: number
   // @ApiProperty()
-  @Column()
+  @Column({ nullable: true })
   number: number
 
   //   @IsEnum(Status)
