@@ -11,7 +11,11 @@ export class TagsRepository extends Repository<Tag> {
   }
 
   async findAll() {
-    return await this.find()
+    return await this.find({
+      order: {
+        name: 'ASC',
+      },
+    })
   }
 
   async findById(id: number) {

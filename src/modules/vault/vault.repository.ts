@@ -10,7 +10,12 @@ export class VaultRepository extends Repository<Vault> {
   }
 
   async getAllVaults() {
-    const unfilteredVaults = await this.find({ relations: ['books'] })
+    const unfilteredVaults = await this.find({
+      relations: ['books'],
+      order: {
+        name: 'ASC',
+      },
+    })
     const filteredVaults = []
 
     for (

@@ -20,7 +20,12 @@ export class BookRepository extends Repository<Book> {
   }
 
   async getAllBooks(): Promise<Book[]> {
-    return await this.find({ relations: ['vault', 'tags'] })
+    return await this.find({
+      relations: ['vault', 'tags'],
+      order: {
+        name: 'ASC',
+      },
+    })
   }
 
   async deleteBookById(id: number): Promise<DeleteResult> {
