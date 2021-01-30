@@ -17,7 +17,7 @@ async function bootstrap() {
     .addTag('library')
     .setContact('daria', 'https://github.com/drmrhdt', 'drmrhdt@mail.ru')
     .setBasePath('v1/api')
-    .addServer('https://library-bcknd.herokuapp.com/')
+    .addServer('https://library-bcknd.herokuapp.com')
     .build()
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('api', app, document)
