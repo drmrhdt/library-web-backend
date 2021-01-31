@@ -119,6 +119,9 @@ export class Book extends BaseEntity {
   @Column({ nullable: true })
   reasonOfMissing: string
 
+  @Column({ nullable: true })
+  url: string
+
   //   @ApiProperty({
   //     description: "The vault's id",
   //   })
